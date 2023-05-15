@@ -10,13 +10,15 @@ GitHub repo: [flurium/jing](https://github.com/flurium/jing)
 
 Website: \*comming soon
 
+Technical requirements: [docs/tech-requirements](./docs/tech-requirements.md)
+
 ### Technologies:
 
 - Java
 - Spring Boot
 - H2 for development
 - PostgreSQL for production
-- Sakura css
+- Sakura css / Mirabo css
 
 ### Plan for infrastructure:
 
