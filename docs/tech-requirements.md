@@ -38,12 +38,78 @@ Filters:
 
 Except of search customers should be able to:
 
-- add item to cart
+- add product to cart
 - rate/comment items
 
 ### Admin panel
 
 If time allows. Admin can manage categories, delete products.
+
+## Database
+
+| user     |                  |
+| -------- | ---------------- |
+| id       | long             |
+| ...      |                  |
+| products | list of product  |
+| comments | list of comments |
+| answers  | list of answers  |
+
+| product     |                          |
+| ----------- | ------------------------ |
+| id          | long                     |
+| name        | string                   |
+| price       | double                   |
+| description | string                   |
+| category    | category                 |
+| user        | user                     |
+| properties  | list of product_property |
+
+| product_property |          |
+| ---------------- | -------- |
+| product          | product  |
+| property         | property |
+
+| property |        |
+| -------- | ------ |
+| id       | long   |
+| name     | string |
+
+In comment and answer user is nullable, because after user is deleted user's answers can be still useful.
+
+| comment |                |
+| ------- | -------------- |
+| id      | long           |
+| date    | datetime       |
+| grade   | int 1..5       |
+| content | string         |
+| user    | nullable user  |
+| product | product        |
+| answers | list of answer |
+
+| answer  |               |
+| ------- | ------------- |
+| id      | long          |
+| content | string        |
+| date    | datetime      |
+| comment | comment       |
+| user    | nullable user |
+
+| category |                  |
+| -------- | ---------------- |
+| id       | long             |
+| name     | string           |
+| products | list of products |
+
+| order   |         |
+| ------- | ------- |
+| id      | long    |
+| amount  | int     |
+| is_paid | bool    |
+| user    | user    |
+| product | product |
+
+\*if is_paid == false then order still in cart.
 
 ## Design
 
