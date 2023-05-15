@@ -33,7 +33,6 @@ Filters:
 - category
 - price
 - name starts with
-- special properties (if time allows)
 
 ### Customer functionality
 
@@ -44,7 +43,7 @@ Except of search customers should be able to:
 
 ### Admin panel
 
-If time allows. Admin can manage categories, delete products, ban users.
+If time allows. Admin can manage categories, delete products.
 
 ## Design
 
