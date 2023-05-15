@@ -1,6 +1,6 @@
 # JING technical requirements
 
-Purpose: recreate subset of [thing](https://github.com/flurium/thing) in Java Spring.
+Purpose: recreate subset of [thing](https://github.com/flurium/thing) in Java Spring Boot.
 
 ## General parts
 
