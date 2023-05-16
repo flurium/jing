@@ -8,7 +8,7 @@ System will contain several parts:
 
 1. authentication/authorization
 2. seller functionality
-3. rich search/filter of products
+3. Search/filter of products
 4. customer functionality
 5. admin panel
 
@@ -25,7 +25,7 @@ As a seller you should be able to manage your products. Jing will not provide fu
 - delete product
 - get all products you have published
 
-### Rich search/filter
+### Search/filter
 
 We want to provide good filter functionality on our main page.
 Filters:
@@ -33,6 +33,8 @@ Filters:
 - category
 - price
 - name starts with
+
+If time allows, make autocomplete on typing.
 
 ### Customer functionality
 
