@@ -19,7 +19,7 @@ I suggest to have only 1 form for it: if user exists Jing will log in, if not Ji
 
 ### Seller functionality
 
-As a seller you should be able to manage your products. Jing will not provide functionality to edit product fields, because it's unsafe for customers. Functionality:
+As a seller you should be able to manage your products. Jing will not provide functionality to edit product fields after publishing, because it's unsafe for customers. Functionality:
 
 - publish product
 - delete product
@@ -61,12 +61,13 @@ If time allows. Admin can manage categories, delete products.
 | name        | string                   |
 | price       | double                   |
 | description | string                   |
+| state       | published or draft       |
 | category    | category                 |
 | user        | user                     |
 | properties  | list of product_property |
 
 | property |         |
-|----------|---------|
+| -------- | ------- |
 | id       | long    |
 | name     | string  |
 | value    | string  |
@@ -75,7 +76,7 @@ If time allows. Admin can manage categories, delete products.
 In comment and answer user is nullable, because after user is deleted user's answers can be still useful.
 
 | comment |                |
-|---------|----------------|
+| ------- | -------------- |
 | id      | long           |
 | date    | datetime       |
 | grade   | int 1..5       |
@@ -120,3 +121,16 @@ I think of using one of classless css frameworks:
 - pico css
 - sakura css
 - mirabo css
+
+### Pages
+
+- home/search/filter - search form, show products and categories.
+- auth - login or register
+- product - show concrete product info and properties, try show 5-10 similar products (lazy load). admin should have delete product button.
+- comments - comments for concrete products, answers, write answer form
+- cart - show orders which aren't paid
+- history - show orders which are paid
+- create product - create new product form, then go to add properties form. can add state (published/draft), while draft we can edit it.
+- my products - show all user products
+- my sells - show history of orders of user's products
+- categories managment - add, delete, edit categories only for admins

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>flurium</groupId>
 	<artifactId>jing</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>jing</name>
 	<description>Java reincarnation of selling platform made with honor in 1 week</description>
 	<properties>
