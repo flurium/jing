@@ -15,7 +15,7 @@ System will contain several parts:
 ### Authentication/authorization
 
 Goal is to provide simple email + password way to login/sign up users.
-I suggest to have only 1 form for it: if user exists Jing will login, if not Jing will create new one and login.
+I suggest to have only 1 form for it: if user exists Jing will log in, if not Jing will create new one and login.
 
 ### Seller functionality
 
@@ -66,7 +66,7 @@ If time allows. Admin can manage categories, delete products.
 | properties  | list of product_property |
 
 | property |         |
-| -------- | ------- |
+|----------|---------|
 | id       | long    |
 | name     | string  |
 | value    | string  |
@@ -75,7 +75,7 @@ If time allows. Admin can manage categories, delete products.
 In comment and answer user is nullable, because after user is deleted user's answers can be still useful.
 
 | comment |                |
-| ------- | -------------- |
+|---------|----------------|
 | id      | long           |
 | date    | datetime       |
 | grade   | int 1..5       |
