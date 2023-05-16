@@ -65,15 +65,12 @@ If time allows. Admin can manage categories, delete products.
 | user        | user                     |
 | properties  | list of product_property |
 
-| product_property |          |
-| ---------------- | -------- |
-| product          | product  |
-| property         | property |
-
-| property |        |
-| -------- | ------ |
-| id       | long   |
-| name     | string |
+| property |         |
+| -------- | ------- |
+| id       | long    |
+| name     | string  |
+| value    | string  |
+| product  | product |
 
 In comment and answer user is nullable, because after user is deleted user's answers can be still useful.
 
