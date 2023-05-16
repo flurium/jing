@@ -25,7 +25,6 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @Column(nullable = true)
     @Nullable
     private JingUser user;
 
