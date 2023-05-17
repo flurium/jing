@@ -7,7 +7,15 @@
 <body>
     <h1>Search for product:</h1>
     <form  method="get">
-        <input type="text">
+        <input type="text" name="text" placeholder="Search">
+
+        <label for="min">Min price</label>
+        <input type="number" name="min" id="min" placeholder="Min price">
+
+        <label for="max">Max price</label>
+        <input type="number" name="max" id="max" placeholder="Max price">
+
+        <input type="submit" value="Search">
     </form>
 </body>
 </html>
