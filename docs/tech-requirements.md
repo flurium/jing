@@ -1,10 +1,10 @@
 # JING technical requirements
 
-Purpose: recreate subset of [thing](https://github.com/flurium/thing) in Java Spring Boot.
+Purpose: recreate a subset of [thing](https://github.com/flurium/thing) in Java Spring Boot.
 
 ## General parts
 
-System will contain several parts:
+The system will contain several parts:
 
 1. authentication/authorization
 2. seller functionality
@@ -14,12 +14,12 @@ System will contain several parts:
 
 ### Authentication/authorization
 
-Goal is to provide simple email + password way to login/sign up users.
-I suggest to have only 1 form for it: if user exists Jing will log in, if not Jing will create new one and login.
+The goal is to provide a simple email + password way to log in/sign up users.
+I suggest having only 1 form for it: if the user exists Jing will log in, if not Jing will create a new one and log in.
 
 ### Seller functionality
 
-As a seller you should be able to manage your products. Jing will not provide functionality to edit product fields after publishing, because it's unsafe for customers. Functionality:
+As a seller, you should be able to manage your products. Jing will not provide the functionality to edit product fields after publishing, because it's unsafe for customers. Functionality:
 
 - publish product
 - delete product
@@ -38,14 +38,14 @@ If time allows, make autocomplete on typing.
 
 ### Customer functionality
 
-Except of search customers should be able to:
+Except for search customers should be able to:
 
-- add product to cart
+- add the product to cart
 - rate/comment items
 
 ### Admin panel
 
-If time allows. Admin can manage categories, delete products.
+If time allows. Admin can manage categories, and delete products.
 
 ## Database
 
@@ -63,6 +63,7 @@ If time allows. Admin can manage categories, delete products.
 | name        | string                   |
 | price       | double                   |
 | description | string                   |
+| image       | string                   |
 | state       | published or draft       |
 | category    | category                 |
 | user        | user                     |
@@ -75,7 +76,7 @@ If time allows. Admin can manage categories, delete products.
 | value    | string  |
 | product  | product |
 
-In comment and answer user is nullable, because after user is deleted user's answers can be still useful.
+In comment and answer the user is nullable because after the user is deleted user's answers can be still useful.
 
 | comment |                |
 | ------- | -------------- |
@@ -109,7 +110,7 @@ In comment and answer user is nullable, because after user is deleted user's ans
 | user    | user    |
 | product | product |
 
-\*if is_paid == false then order still in cart.
+\*if is_paid == false then the order is still in the cart.
 
 ## Design
 
@@ -118,7 +119,7 @@ Overall requirements:
 - simple
 - clean
 
-I think of using one of classless css frameworks:
+I think of using one of the classless css frameworks:
 
 - pico css
 - sakura css
@@ -128,11 +129,29 @@ I think of using one of classless css frameworks:
 
 - home/search/filter - search form, show products and categories.
 - auth - login or register
-- product - show concrete product info and properties, try show 5-10 similar products (lazy load). admin should have delete product button.
+- product - show concrete product info and properties, try to show 5-10 similar products (lazy load). admin should have a delete product button.
 - comments - comments for concrete products, answers, write answer form
 - cart - show orders which aren't paid
 - history - show orders which are paid
-- create product - create new product form, then go to add properties form. can add state (published/draft), while draft we can edit it.
+- create a product - create a new product form, then go to add properties form. can add state (published/draft), while draft we can edit it.
 - my products - show all user products
-- my sells - show history of orders of user's products
-- categories managment - add, delete, edit categories only for admins
+- my sales - show the history of orders of user's products
+- categories management - add, delete, and edit categories only for admins
+
+## Team
+
+### Roman Koshchei
+
+Team Leads. Look after other teammates. Do global decisions.
+
+### Mariia Shcherbak
+
+Really beautiful. If she understands she will do excellent.
+
+### Lytvynenko Vitalii
+
+Great man. Have fantastic thoughts. Do some difficult stuff.
+
+### Fliud Dmytro
+
+Funny guy. Need some help to keep the quality of the code.

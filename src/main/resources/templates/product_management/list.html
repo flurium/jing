@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:replace="shared/head"/>
+    <title>Title</title>
+</head>
+<body x-data="{ showDelete: false }">
+
+  <h1>My products:</h1>
+
+
+  <dialog :open="showDelete" @click.outside="showDelete=false" x-show="showDelete">
+    <article>
+      <p>Are you sure you want to delete?</p>
+      <button @click="showDelete=false">No</button>
+      <a role="button">Yes</a>
+    </article>
+  </dialog>
+
+  <div class="grid many" th:each="product : ${products}">
+    <article>
+      <!-- img src will be replaced in future -->
+      <img src="https://roman-koshchei.github.io/mirabo/assets/akira.png">
+      <h5 th:text="${product.name}"></h5>
+      <strong th:text="${product.price} + '$'"></strong>
+      <p th:text="${product.description}"></p>
+      <footer>
+        <button @click="showDelete=true">Delete</button>
+      </footer>
+    </article>
+  </div>
+
+
+
+</body>
+</html>

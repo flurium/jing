@@ -1,0 +1,623 @@
+/*
+  Mirabo.css
+  
+  Born to conquer Minimal CSS framework world
+  
+  GitHub: https://github.com/roman-koshchei/mirabo
+*/
+
+:root {
+  --mirabo-text-color: white;
+  --mirabo-dark: #27272a;
+
+  --mirabo-primary: #a78bfa;
+  --mirabo-secondary: #e4e4e7;
+
+  --mirabo-background-color: #fff;
+  --mirabo-border-radius: 0.5rem;
+  --mirabo-gap: 1rem;
+  --mirabo-default-font-size: 1rem;
+  --mirabo-vertical-padding: 0.5rem;
+
+  --mirabo-arrow: url("data:image/svg+xml,%3Csvg width='13' height='8' viewBox='0 0 13 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 1.5L6.5 6.5L11.5 1.5' stroke='%2327272A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --mirabo-check: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 1L3.625 6L1 3.72727' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: #a78bfa80;
+}
+
+* {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+p {
+  margin-top: 0;
+}
+
+/**/
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #d4d4d8 transparent;
+  overflow: overlay;
+  font-family: sans-serif;
+  /* font-size: 1.125rem; */
+  font-size: var(--mirabo-default-font-size);
+}
+
+body {
+  color: var(--mirabo-dark);
+  overflow: overlay;
+  max-width: 65rem;
+  margin: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+img {
+  border-radius: var(--mirabo-border-radius);
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* with text inside (not wrap element) */
+a:not(:has(*)) {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: #a78bfa80;
+}
+
+/* 
+  NAVBAR 
+  I decided to use nav tag not header.
+
+*/
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+
+  top: 1rem;
+  border-bottom: solid 2px var(--mirabo-secondary);
+}
+
+/* Layout */
+
+.between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--mirabo-gap);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--mirabo-gap);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 1.25rem;
+  row-gap: 1.75rem;
+}
+
+.grid.many {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* sm */
+@media (min-width: 640px) {
+  /* .grid {
+    grid-template-columns: repeat(2, 1fr);
+  } */
+}
+
+/* md */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid.many {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid.many {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+/*
+@media (min-width: 1280px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+/* 
+  FORM
+  All inputs should be 100%
+*/
+
+input,
+textarea,
+select {
+  font-size: var(--mirabo-default-font-size);
+  padding: 1rem 1.25rem;
+  border-radius: 0.375rem;
+  background-color: #00000008;
+  border: solid 2px transparent;
+  margin-bottom: 1rem;
+}
+
+select:not([multiple]) {
+  appearance: none;
+  background-image: var(--mirabo-arrow);
+  background-position: center right 1.25rem;
+  background-size: 1rem auto;
+  background-repeat: no-repeat;
+}
+
+option:checked {
+  background-color: #a78bfa80;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 1.125rem;
+}
+
+[type="text"]:focus,
+[type="number"]:focus,
+[type="email"]:focus,
+[type="password"]:focus,
+[type="url"]:focus,
+[type="tel"]:focus,
+[type="search"]:focus,
+textarea:focus {
+  border: solid 2px var(--mirabo-primary);
+}
+
+/* RANGE */
+
+[type="range"] {
+  height: 2px;
+  padding: 0;
+  border-radius: 20rem;
+  background-color: var(--mirabo-primary);
+  appearance: none;
+}
+
+[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--mirabo-background-color);
+  border: solid 2px var(--mirabo-primary);
+  border-radius: 20rem;
+  cursor: pointer;
+}
+
+[type="range"]::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--mirabo-background-color);
+  border: solid 2px var(--mirabo-primary);
+  border-radius: 20rem;
+  cursor: pointer;
+}
+
+[type="file"] {
+  cursor: pointer;
+}
+
+form > button,
+form > [role="button"],
+form > input,
+form > textarea,
+form > select {
+  width: 100%;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+
+  border: solid 2px var(--mirabo-secondary);
+  background: none;
+}
+
+[type="checkbox"]:checked {
+  background-image: var(--mirabo-check);
+  background-position: center;
+  background-size: 0.75em auto;
+  background-repeat: no-repeat;
+
+  background-color: var(--mirabo-primary);
+  border: solid 2px var(--mirabo-primary);
+}
+
+[type="checkbox"]:disabled {
+  border-color: var(--mirabo-secondary);
+  background-color: var(--mirabo-secondary);
+  cursor: default;
+}
+
+[type="radio"] {
+  border-radius: 20rem;
+}
+
+[type="radio"]:enabled:checked {
+  border-color: var(--mirabo-primary);
+}
+
+[type="radio"]:disabled {
+  background-color: var(--mirabo-secondary);
+  border-color: var(--mirabo-secondary);
+}
+
+[type="radio"]:checked {
+  border-width: 0.4rem;
+  background-color: transparent;
+}
+
+[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0.75rem;
+  height: 3.5rem;
+}
+
+[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+[type="color"]::-webkit-color-swatch {
+  border-radius: calc(var(--mirabo-border-radius) / 2);
+  border: none;
+}
+
+[type="color"]::-moz-color-swatch {
+  border-radius: calc(var(--mirabo-border-radius) / 2);
+  padding: 0;
+  border: none;
+}
+
+[type="file"] {
+  background: none;
+  padding: 0.5rem 0;
+  border-radius: 0;
+}
+
+[type="file"]::file-selector-button {
+  margin-right: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* 
+BUTTON 
+  Tags:
+  - button
+  - *[role="button"] - any element which role is button
+  - input[type="submit"] - submit buttons
+  - input[type="reset"] - reset buttons, should be secondary or text
+  - input[type="button"] - button inputs
+*/
+
+/* all */
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+[type="file"]::file-selector-button,
+button {
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-block;
+  user-select: none;
+  text-decoration: none !important;
+
+  padding: 0.6rem 1rem;
+  border-radius: 20rem;
+
+  font-size: var(--mirabo-default-font-size);
+  color: var(--mirabo-text-color);
+  background-color: var(--mirabo-primary);
+  border: solid 2px var(--mirabo-primary);
+
+  transition: transform 0.15s ease-in-out;
+}
+
+*[role="button"]:hover,
+input[type="submit"]:enabled:hover,
+input[type="button"]:enabled:hover,
+input[type="reset"]:enabled:hover,
+button:enabled:hover {
+  transform: scaleY(1.04) scaleX(1.02);
+}
+
+*[role="button"]:active,
+input[type="submit"]:enabled:active,
+input[type="button"]:enabled:active,
+input[type="reset"]:enabled:active,
+button:enabled:active {
+  transform: scaleY(0.96) scaleX(0.98);
+}
+
+button:disabled {
+  cursor: default;
+  filter: opacity(0.7);
+}
+
+/* secondary */
+*[role="button"].secondary,
+input[type="submit"].secondary,
+input[type="button"].secondary,
+button.secondary {
+  background-color: var(--mirabo-secondary);
+  color: var(--mirabo-dark);
+  border-color: var(--mirabo-secondary);
+}
+
+/* contrast */
+*[role="button"].contrast,
+input[type="submit"].contrast,
+input[type="button"].contrast,
+button.contrast {
+  background-color: var(--mirabo-dark);
+  color: var(--mirabo-text-color);
+  border-color: var(--mirabo-dark);
+}
+
+/* Outline */
+
+[role="button"].outline,
+[type="submit"].outline,
+[type="button"].outline,
+[type="reset"].outline,
+button.outline {
+  background-color: transparent;
+  color: var(--mirabo-primary);
+  border: solid 2px var(--mirabo-primary);
+}
+
+/* secondary outline */
+[role="button"].secondary.outline,
+[type="submit"].secondary.outline,
+[type="button"].secondary.outline,
+button.secondary.outline {
+  color: var(--mirabo-dark);
+  border-color: var(--mirabo-secondary);
+}
+
+/* secondary outline */
+*[role="button"].contrast.outline,
+input[type="submit"].contrast.outline,
+input[type="button"].contrast.outline,
+button.contrast.outline {
+  color: var(--mirabo-dark);
+  border-color: var(--mirabo-dark);
+}
+
+/* CARD */
+
+article {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #fff;
+  /* box-shadow: 0px 0px 3px 1px #f4f4f5; */
+  border-radius: var(--mirabo-border-radius);
+  /* border: solid 2px #f4f4f5; */
+}
+
+article > * {
+  margin: 0;
+}
+
+article > img {
+  /* 100% + 2 paddings */
+  width: calc(100% + 1rem);
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+article > *:last-child {
+  margin-bottom: 0;
+}
+
+/* 
+  Footer
+
+  If card has footer then we should place footer at the end.
+  I didn't find another solution rather than flex.
+*/
+
+article > footer {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--mirabo-gap);
+  flex-wrap: wrap;
+}
+
+/* HEADER */
+
+article header {
+  padding-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.grid article {
+  height: 100%;
+}
+
+/* ACCORDION */
+/* Styling for the <details> element */
+details {
+  border-bottom: 1px solid var(--mirabo-secondary);
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+summary {
+  cursor: pointer;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+summary::after {
+  display: block;
+  float: right;
+  width: 1rem;
+  height: 1rem;
+
+  content: "";
+  transform: rotate(90deg);
+
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-image: var(--mirabo-arrow);
+  transition: transform 0.3s ease-in-out;
+}
+
+details[open] summary::after {
+  transform: rotate(0deg);
+}
+
+details > summary {
+  list-style: none;
+  user-select: none;
+  font-size: 1.125rem;
+}
+
+details > *:not(summary) {
+  margin-top: 1em;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: start;
+  font-weight: 400;
+}
+
+table:not(:has(tbody)) > tr:nth-child(odd),
+tbody > tr:nth-child(odd) {
+  background-color: #00000008;
+}
+
+thead,
+tfoot {
+  font-size: 1.125rem;
+}
+
+/* MODAL */
+dialog {
+  border: 0;
+  position: fixed;
+  z-index: 9999;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: fit-content;
+  max-width: 40rem;
+  padding: 1rem;
+
+  background-color: var(--mirabo-background-color);
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+}

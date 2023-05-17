@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "products")
+
 public class Product {
 
     @Id
@@ -19,6 +20,8 @@ public class Product {
     private String name;
 
     private Double price;
+
+    private String image;
 
     @Column(columnDefinition = "text")
     private String description;
