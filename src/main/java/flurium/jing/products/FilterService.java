@@ -33,7 +33,6 @@ public class FilterService {
 
         var conditions = new ArrayList<Predicate>();
         if(categories != null && categories.size() > 0) {
-            //conditions.add(categoryJoin.get("id").in(categories));
             conditions.add(categoryJoin.get("id").in(categories));
         }
 
@@ -46,7 +45,16 @@ public class FilterService {
         }
 
         if(text != null && !text.isEmpty()) {
-            conditions.add(builder.like(product.get("name"), "%" + text + "%"));
+            conditions.add(builder.or(
+                    builder.like(product.get("name"), "%" + text + "%"),
+                    builder.like(product.get("description"), "%" + text + "%")
+            ));
+
+            var sortOrder = builder.selectCase()
+                    .when(builder.like(product.get("name"), "%" + text + "%"), 0)
+                    .otherwise(1);
+
+            query.orderBy(builder.asc(sortOrder), builder.asc(product.get("name")));
         }
 
         query.where(conditions.toArray(new Predicate[0]));

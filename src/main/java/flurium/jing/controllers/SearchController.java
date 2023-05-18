@@ -27,10 +27,10 @@ public class SearchController {
         @RequestParam(required = false) List<Long> categories,
         @RequestParam(required = false)  Double min,
         @RequestParam(required = false)  Double max,
-        @RequestParam(required = false)  String contains,
+        @RequestParam(required = false)  String text,
         Model model
     ) {
-        var products = filterService.filter(categories, min, max, contains);
+        var products = filterService.filter(categories, min, max, text);
         model.addAttribute("products",  ProductListItem.listFromProducts(products));
         return "search";
     }

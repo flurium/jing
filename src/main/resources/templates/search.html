@@ -7,15 +7,33 @@
 <body>
     <h1>Search for product:</h1>
     <form  method="get">
-        <input type="text" name="text" placeholder="Search">
+        <input type="text" name="text" placeholder="Search" th:value="${param.text}">
 
-        <label for="min">Min price</label>
-        <input type="number" name="min" id="min" placeholder="Min price">
+        <div class="between">
+            <label for="min">Min price
+            <input type="number" name="min" min="0" id="min" th:value="${param.min}" placeholder="Min price">
+            </label>
 
-        <label for="max">Max price</label>
-        <input type="number" name="max" id="max" placeholder="Max price">
+            <label for="max">Max price
+            <input type="number" name="max" min="0" id="max" th:value="${param.max}" placeholder="Max price">
+            </label>
 
-        <input type="submit" value="Search">
+            <input type="submit" value="Search">
+        </div>
     </form>
+
+    <div class="grid many">
+        <article th:each="product : ${products}">
+            <!-- img src will be replaced in future -->
+            <img src="https://roman-koshchei.github.io/mirabo/assets/akira.png">
+            <h5 th:text="${product.name}"></h5>
+            <strong th:text="${product.price} + '$'"></strong>
+            <p th:text="${product.description}"></p>
+            <footer>
+                <a th:href="@{/{id}(id=${product.id})}" class="outline" role="button">Buy</a>
+            </footer>
+        </article>
+    </div>
+
 </body>
 </html>

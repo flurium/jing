@@ -29,7 +29,7 @@ public class InitDatabase {
             categoryRepository.save(category3);
 
             var product1 = new Product("product1", 56.2, "product 1 descrp", category1);
-            var product2 = new Product("product2", 534.2, "product 2 descrp", category1);
+            var product2 = new Product("product2", 534.2, "product 2 3descrp", category1);
             var product3 = new Product("product3", 566.2, "product 3 descrp", category3);
             var product4 = new Product("product4", 156.2, "product 4 descrp", category2);
 

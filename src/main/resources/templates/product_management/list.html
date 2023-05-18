@@ -17,8 +17,8 @@
     </article>
   </dialog>
 
-  <div class="grid many" th:each="product : ${products}">
-    <article>
+  <div class="grid many">
+    <article th:each="product : ${products}">
       <!-- img src will be replaced in future -->
       <img src="https://roman-koshchei.github.io/mirabo/assets/akira.png">
       <h5 th:text="${product.name}"></h5>
