@@ -35,5 +35,9 @@
         </article>
     </div>
 
+    <div class="center">
+        <a th:href="@{|?page=${page}|}"  th:text="${page + 1}" th:each="page : ${#numbers.sequence(0, recipes.totalPages - 1)}"></a>
+    </div>
+
 </body>
 </html>

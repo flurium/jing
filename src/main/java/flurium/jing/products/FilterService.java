@@ -4,9 +4,8 @@ import flurium.jing.db.models.Category;
 import flurium.jing.db.models.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.Join;
-import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,45 +19,76 @@ public class FilterService {
     @PersistenceContext
     private EntityManager em;
 
-    public List<Product> filter(
+    public FilterResult filter(
         @Nullable List<Long> categories,
         @Nullable Double min,
         @Nullable Double max,
-        @Nullable String text
+        @Nullable String text,
+        Pageable pageable
     ) {
         var builder = em.getCriteriaBuilder();
-        var query = builder.createQuery(Product.class);
-        var product = query.from(Product.class);
-        Join<Product, Category> categoryJoin = product.join("category");
 
-        var conditions = new ArrayList<Predicate>();
+        /*
+            We should get total count of filter products for pagination.
+            So we should construct 2 queries.
+        */
+
+        var productQuery = builder.createQuery(Product.class);
+        var countQuery = builder.createQuery(Long.class);
+
+        var productQueryRoot = productQuery.from(Product.class);
+        var countQueryRoot = countQuery.from(Product.class);
+
+        var countQueryConditions = new ArrayList<Predicate>();
+        var productQueryConditions = new ArrayList<Predicate>();
+
         if(categories != null && categories.size() > 0) {
-            conditions.add(categoryJoin.get("id").in(categories));
+            productQueryConditions.add(productQueryRoot.join("category").get("id").in(categories));
+            countQueryConditions.add(countQueryRoot.join("category").get("id").in(categories));
         }
 
         if(min != null) {
-            conditions.add(builder.greaterThanOrEqualTo(product.get("price"), min));
+            productQueryConditions.add(builder.greaterThanOrEqualTo(productQueryRoot.get("price"), min));
+            countQueryConditions.add(builder.greaterThanOrEqualTo(countQueryRoot.get("price"), min));
         }
 
         if (max != null) {
-            conditions.add(builder.lessThanOrEqualTo(product.get("price"), max));
+            productQueryConditions.add(builder.lessThanOrEqualTo(productQueryRoot.get("price"), max));
+            countQueryConditions.add(builder.lessThanOrEqualTo(countQueryRoot.get("price"), max));
         }
 
         if(text != null && !text.isEmpty()) {
-            conditions.add(builder.or(
-                    builder.like(product.get("name"), "%" + text + "%"),
-                    builder.like(product.get("description"), "%" + text + "%")
+            productQueryConditions.add(builder.or(
+                    builder.like(productQueryRoot.get("name"), "%" + text + "%"),
+                    builder.like(productQueryRoot.get("description"), "%" + text + "%")
+            ));
+            countQueryConditions.add(builder.or(
+                    builder.like(countQueryRoot.get("name"), "%" + text + "%"),
+                    builder.like(countQueryRoot.get("description"), "%" + text + "%")
             ));
 
+            // sort only for product query
             var sortOrder = builder.selectCase()
-                    .when(builder.like(product.get("name"), "%" + text + "%"), 0)
+                    .when(builder.like(productQueryRoot.get("name"), "%" + text + "%"), 0)
                     .otherwise(1);
 
-            query.orderBy(builder.asc(sortOrder), builder.asc(product.get("name")));
+            productQuery.orderBy(builder.asc(sortOrder), builder.asc(productQueryRoot.get("name")));
         }
 
-        query.where(conditions.toArray(new Predicate[0]));
+        productQuery.where(productQueryConditions.toArray(new Predicate[0]));
+        countQuery.where(countQueryConditions.toArray(new Predicate[0]));
 
-        return em.createQuery(query).getResultList();
+        List<Product> products = em.createQuery(productQuery)
+                .setFirstResult(pageable.getPageNumber() * pageable.getPageSize())
+                .setMaxResults(pageable.getPageSize())
+                .getResultList();
+
+        countQuery.select(builder.count(countQueryRoot));
+        Long count = em.createQuery(countQuery).getSingleResult();
+
+        return new FilterResult(products, count);
     }
+
+
+
 }

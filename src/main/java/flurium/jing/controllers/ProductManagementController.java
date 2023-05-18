@@ -19,11 +19,8 @@ public class ProductManagementController {
     public String list(Model model, Authentication authentication) {
 
         var products = productRepository.findAll(); //productRepository.findAllByUserId();
-        var productList = ProductListItem.listFromProducts(products);
+        model.addAttribute("products",  ProductListItem.listFromProducts(products));
 
-        var product = new ProductListItem(1L, "test", 125, "test description about product");
-        productList.add(product);
-        model.addAttribute("products", productList);
-        return "product_management/list";
+        return "products/list";
     }
 }
