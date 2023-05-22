@@ -8,7 +8,7 @@ Date: Apr 29, 2023 - now
 
 GitHub repo: [flurium/jing](https://github.com/flurium/jing)
 
-Website: \*comming soon
+Website: [jing.hop.sh](https://jing.hop.sh)
 
 Technical requirements: [docs/tech-requirements](./docs/tech-requirements.md)
 
@@ -16,11 +16,14 @@ Technical requirements: [docs/tech-requirements](./docs/tech-requirements.md)
 
 - Java
 - Spring Boot
-- H2 for development
-- PostgreSQL for production
-- Sakura css / Mirabo css
+- PostgreSQL
+- Mirabo css
 
 ### Plan for infrastructure:
 
-- Fly.io for deployment
+- Hop.io for deployment
 - CockroachDb for database
+
+## Environment variables setup guide
+
+![](./docs/env-variables-guide.gif)

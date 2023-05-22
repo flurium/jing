@@ -4,7 +4,7 @@ COPY pom.xml /build/pom.xml
 COPY src /build/src/
 
 WORKDIR /build/
-RUN mvn package
+RUN mvn package -Dmaven.test.skip
 
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
