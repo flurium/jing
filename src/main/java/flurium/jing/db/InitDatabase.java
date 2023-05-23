@@ -20,6 +20,8 @@ public class InitDatabase {
     @Bean
     public CommandLineRunner init() {
         return args -> {
+
+            /*
             var category1 = new Category("sport");
             var category2 = new Category("electronics");
             var category3 = new Category("food");
@@ -37,6 +39,8 @@ public class InitDatabase {
             productRepository.save(product2);
             productRepository.save(product3);
             productRepository.save(product4);
+             */
         };
+
     }
 }
