@@ -4,7 +4,7 @@
 
 Java reincarnation of selling platform made with honor in 1 week.  Officially DEAD
 
-Date: Apr 29, 2023 - now
+Date: Apr 29, 2023 - never
 
 GitHub repo: [flurium/jing](https://github.com/flurium/jing)
 
